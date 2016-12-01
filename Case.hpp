@@ -17,7 +17,7 @@ private:
         
 public : 
     Case<T>();
-    Case<T>(T& t);
+    Case<T>(T t);
     T getEtat();
 };
 
