@@ -9,17 +9,17 @@
 
 using namespace std;
 
-template <class T>
-class Case{
-    
+template <class T> class Case {
 private:
-    T etat;       
-        
-public : 
-    Case<T>();
-    Case<T>(T t);
-    T getEtat();
+  T etat;
+
+public:
+  Case();
+  Case(T t);
+  T getEtat();
+  void setEtat(T _etat);
 };
 
-#endif /* CASE_HPP */
+template <class T> ostream& operator<<(ostream& out, Case<T>& c);
 
+#endif /* CASE_HPP */
