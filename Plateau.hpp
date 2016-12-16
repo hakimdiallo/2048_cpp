@@ -14,12 +14,13 @@ public:
   Case<T>** plateau;
   Plateau(int n,int m);
   //static Plateau<T> *getInstance();
-  void create(int n, int m);
+  virtual void create(int n, int m);
   ~Plateau();
-  int getLongueur(){ return longueur;}
-  int getLargeur(){ return largeur;}
-  void setLongueur(int n){longueur = n;}
-  void setLargeur(int m){largeur = m;}
+  virtual int getLongueur();
+  virtual int getLargeur();
+  virtual void setLongueur(int n);
+  virtual void setLargeur(int m);
+  Case<T> getCase(int l, int c);
 };
 
 template <class T> ostream& operator<<(ostream& out, const Plateau<T>& p);

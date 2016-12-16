@@ -1,4 +1,5 @@
 #include "Plateau.cpp"
+#include "BaseJeuAvecDeplacement.cpp"
 
 int main(int argc, char** argv) {
     Case<int> c(4);
@@ -8,4 +9,5 @@ int main(int argc, char** argv) {
     p.plateau[8][7] = c;
     p.plateau[5][3] = c7;
     cout << p << endl;
+    BaseJeuAvecDeplacement<int> bj;
 }
