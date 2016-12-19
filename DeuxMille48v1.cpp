@@ -78,7 +78,7 @@ bool DeuxMille48v1::canMoveLeft(int l, int c){
   if (c == 0) {
     return false;
   }
-  if (getCase(l,c-1).getEtat() == 0) {
+  if (getCase(l,c-1).getEtat() == 0 || getCase(l,c).getEtat() == getCase(l,c-1).getEtat()) {
     return true;
   }
   return false;
@@ -92,7 +92,7 @@ bool DeuxMille48v1::canMoveDown(int l, int c){
   if (l == longueur-1) {
     return false;
   }
-  if (getCase(l+1,c).getEtat() == 0) {
+  if (getCase(l+1,c).getEtat() == 0 || getCase(l,c).getEtat() == getCase(l+1,c).getEtat()) {
     return true;
   }
   return false;
@@ -106,7 +106,7 @@ bool DeuxMille48v1::canMoveUp(int l, int c){
   if (l == 0) {
     return false;
   }
-  if (getCase(l-1,c).getEtat() == 0) {
+  if (getCase(l-1,c).getEtat() == 0 || getCase(l,c).getEtat() == getCase(l-1,c).getEtat()) {
     return true;
   }
   return false;
