@@ -2,15 +2,15 @@
 #define DEUXMILLE48V1
 
 #include "BaseJeuAvecDeplacement.hpp"
-#include "NumberOrVide.hpp"
+//#include "NumberOrVide.hpp"
 
-class DeuxMille48v1: public BaseJeuAvecDeplacement<NumberOrVide> {
+class DeuxMille48v1: public BaseJeuAvecDeplacement<int> {
 //private:
 
 public:
   DeuxMille48v1(int n, int m);
   virtual ~DeuxMille48v1();
-  virtual Case<NumberOrVide>** plateau();
+  virtual Case<int>** plateau();
   virtual bool canMoveRight();
   virtual bool canMoveRight(int l, int c);
   virtual bool canMoveLeft();

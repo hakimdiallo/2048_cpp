@@ -1,22 +1,23 @@
 #include "BaseJeuAvecDeplacement.cpp"
 #include "DeuxMille48v1.hpp"
 
-DeuxMille48v1::DeuxMille48v1(int n, int m): BaseJeuAvecDeplacement<NumberOrVide>(n,m){
+DeuxMille48v1::DeuxMille48v1(int n, int m): BaseJeuAvecDeplacement<int>(n,m){
   //BaseJeuAvecDeplacement<NumberOrVide>(n,m);
 }
 
 DeuxMille48v1::~DeuxMille48v1(){}
 
-Case<NumberOrVide>** DeuxMille48v1::plateau(){
-  return BaseJeuAvecDeplacement<NumberOrVide>::plateau();
+Case<int>** DeuxMille48v1::plateau(){
+  return BaseJeuAvecDeplacement<int>::plateau();
 }
 
 bool DeuxMille48v1::canMoveRight(int l, int c){
   if (c == largeur-1) {
     return false;
   }
-  Case<NumberOrVide> case = getCase(l,c+1);
-  if (case.getEtat() == NumberOrVide::Vide) {
+  Case<int> case();
+  case = getCase(l,c+1);
+  if (getCase(l,c+1).getEtat() == 0) {
     return true;
   }
   return false;
@@ -30,7 +31,7 @@ bool DeuxMille48v1::canMoveLeft(int l, int c){
   if (c == 0) {
     return false;
   }
-  if (getCase(l,c-1).getEtat() == NumberOrVide::Vide) {
+  if (getCase(l,c-1).getEtat() == 0) {
     return true;
   }
   return false;
@@ -44,7 +45,7 @@ bool DeuxMille48v1::canMoveDown(int l, int c){
   if (l == longueur-1) {
     return false;
   }
-  if (getCase(l+1,c).getEtat() == NumberOrVide::Vide) {
+  if (getCase(l+1,c).getEtat() == 0) {
     return true;
   }
   return false;
@@ -58,7 +59,7 @@ bool DeuxMille48v1::canMoveUp(int l, int c){
   if (l == 0) {
     return false;
   }
-  if (getCase(l-1,c).getEtat() == NumberOrVide::Vide) {
+  if (getCase(l-1,c).getEtat() == 0) {
     return true;
   }
   return false;
