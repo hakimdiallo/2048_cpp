@@ -31,7 +31,7 @@ template <class T> void Plateau<T>::setLargeur(int l){
   largeur = l;
 }
 
-template <class T> Case<T> Plateau<T>::getCase(int l, int c){
+template <class T> Case<T>& Plateau<T>::getCase(int l, int c){
   return plateau[l][c];
 }
 

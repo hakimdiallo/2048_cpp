@@ -20,7 +20,7 @@ public:
   virtual int getLargeur();
   virtual void setLongueur(int n);
   virtual void setLargeur(int m);
-  Case<T> getCase(int l, int c);
+  Case<T>& getCase(int l, int c);
 };
 
 template <class T> ostream& operator<<(ostream& out, const Plateau<T>& p);
