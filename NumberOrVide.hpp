@@ -2,7 +2,7 @@
 #define NUMBERORVIDE
 
 enum class NumberOrVide {
-  int,
+  Int,
   Vide
 };
 

@@ -5,7 +5,7 @@
 
 template <class T> class Plateau{
 
-private:
+protected:
   int longueur;
   int largeur;
   //static Plateau<T> *instance;
@@ -14,8 +14,8 @@ public:
   Case<T>** plateau;
   Plateau(int n,int m);
   //static Plateau<T> *getInstance();
-  virtual void create(int n, int m);
-  ~Plateau();
+  //virtual void create(int n, int m);
+  virtual ~Plateau();
   virtual int getLongueur();
   virtual int getLargeur();
   virtual void setLongueur(int n);

@@ -1,5 +1,5 @@
-#include "Plateau.cpp"
-#include "BaseJeuAvecDeplacement.cpp"
+//#include "Plateau.cpp"
+#include "DeuxMille48v1.cpp"
 
 int main(int argc, char** argv) {
     Case<int> c(4);
@@ -9,5 +9,5 @@ int main(int argc, char** argv) {
     p.plateau[8][7] = c;
     p.plateau[5][3] = c7;
     cout << p << endl;
-    BaseJeuAvecDeplacement<int> bj;
+    DeuxMille48v1 v(4,4);
 }
