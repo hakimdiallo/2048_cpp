@@ -16,6 +16,7 @@ public:
   virtual Case<int>** plateau();
   virtual void init();
   void newNumber();
+  void cleanMerge();
   virtual bool canMoveRight();
   virtual bool canMoveRight(int l, int c);
   virtual bool canMoveLeft();

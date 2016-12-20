@@ -124,14 +124,21 @@ void DeuxMille48v1::moveRight(){
       }
     }
   }
+  cleanMerge();
   newNumber();
 }
 
 void DeuxMille48v1::moveRight(int l, int c){
   if (canMoveRight(l,c)) {
     for (int i = c+1; i < largeur; ++i) {
-      if(getCase(l,i).getEtat() == getCase(l,c).getEtat()){
+      if(getCase(l,i).getEtat() == getCase(l,c).getEtat() && getCase(l,i).canMerge()){
         getCase(l,i).setEtat(getCase(l,i).getEtat()*2);
+        getCase(l,c).setEtat(0);
+        getCase(l,i).setCanMerge(false);
+        return;
+      }
+      else if (getCase(l,i).getEtat() == getCase(l,c).getEtat() && !getCase(l,i).canMerge()) {
+        getCase(l,i-1).setEtat(getCase(l,c).getEtat());
         getCase(l,c).setEtat(0);
         return;
       }
@@ -154,14 +161,21 @@ void DeuxMille48v1::moveLeft(){
       }
     }
   }
+  cleanMerge();
   newNumber();
 }
 
 void DeuxMille48v1::moveLeft(int l, int c){
   if (canMoveLeft(l,c)) {
     for (int i = c-1; i >= 0; --i) {
-      if(getCase(l,i).getEtat() == getCase(l,c).getEtat()){
+      if(getCase(l,i).getEtat() == getCase(l,c).getEtat() && getCase(l,i).canMerge()){
         getCase(l,i).setEtat(getCase(l,i).getEtat()*2);
+        getCase(l,c).setEtat(0);
+        getCase(l,i).setCanMerge(false);
+        return;
+      }
+      else if (getCase(l,i).getEtat() == getCase(l,c).getEtat() && !getCase(l,i).canMerge()) {
+        getCase(l,i+1).setEtat(getCase(l,c).getEtat());
         getCase(l,c).setEtat(0);
         return;
       }
@@ -184,14 +198,21 @@ void DeuxMille48v1::moveDown(){
       }
     }
   }
+  cleanMerge();
   newNumber();
 }
 
 void DeuxMille48v1::moveDown(int l, int c){
   if (canMoveDown(l,c)) {
     for (int i = l+1; i < longueur; ++i) {
-      if(getCase(i,c).getEtat() == getCase(l,c).getEtat()){
+      if(getCase(i,c).getEtat() == getCase(l,c).getEtat() && getCase(i,c).canMerge()){
         getCase(i,c).setEtat(getCase(i,c).getEtat()*2);
+        getCase(l,c).setEtat(0);
+        getCase(i,c).setCanMerge(false);
+        return;
+      }
+      else if (getCase(i,c).getEtat() == getCase(l,c).getEtat() && !getCase(i,c).canMerge()) {
+        getCase(i-1,c).setEtat(getCase(l,c).getEtat());
         getCase(l,c).setEtat(0);
         return;
       }
@@ -214,14 +235,21 @@ void DeuxMille48v1::moveUp(){
       }
     }
   }
+  cleanMerge();
   newNumber();
 }
 
 void DeuxMille48v1::moveUp(int l, int c){
   if (canMoveUp(l,c)) {
     for (int i = l-1; i >= 0; --i) {
-      if(getCase(i,c).getEtat() == getCase(l,c).getEtat()){
+      if(getCase(i,c).getEtat() == getCase(l,c).getEtat() && getCase(i,c).canMerge()){
         getCase(i,c).setEtat(getCase(i,c).getEtat()*2);
+        getCase(l,c).setEtat(0);
+        getCase(i,c).setCanMerge(false);
+        return;
+      }
+      else if (getCase(i,c).getEtat() == getCase(l,c).getEtat() && !getCase(i,c).canMerge()) {
+        getCase(i+1,c).setEtat(getCase(l,c).getEtat());
         getCase(l,c).setEtat(0);
         return;
       }
@@ -233,6 +261,14 @@ void DeuxMille48v1::moveUp(int l, int c){
     }
     getCase(0,c).setEtat(getCase(l,c).getEtat());
     getCase(l,c).setEtat(0);
+  }
+}
+
+void DeuxMille48v1::cleanMerge(){
+  for (int j = 0; j < largeur; ++j) {
+    for (int i = 0; i < longueur; ++i) {
+      getCase(i,j).setCanMerge(true);
+    }
   }
 }
 
