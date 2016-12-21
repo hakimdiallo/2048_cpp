@@ -41,10 +41,10 @@ void DeuxMille48v2::newNumber(){
     c = rand()%largeur;
   }
   int r = rand()%6;
-  if (r<=3) {
+  if (r<=2) {
     getCase(l,c).setEtat(2);
     }
-  else if(r==4){
+  else if(r==3 || r==4){
     getCase(l,c).setEtat(-1);
         }
         else getCase(l,c).setEtat(4);
@@ -133,7 +133,7 @@ void DeuxMille48v2::moveRight(){
 void DeuxMille48v2::moveRight(int l, int c){
   if (canMoveRight(l,c)) {
     for (int i = c+1; i < largeur; ++i) {
-      if(getCase(l,i).getEtat() == getCase(l,c).getEtat() && getCase(l,i).canMerge()){
+      if(getCase(l,i).getEtat() == getCase(l,c).getEtat() && getCase(l,i).getEtat() != -1 && getCase(l,c).getEtat() != -1 && getCase(l,i).canMerge()){
         getCase(l,i).setEtat(getCase(l,i).getEtat()*2);
         getCase(l,c).setEtat(0);
         getCase(l,i).setCanMerge(false);
@@ -144,11 +144,24 @@ void DeuxMille48v2::moveRight(int l, int c){
         getCase(l,c).setEtat(0);
         return;
       }
+      else if(getCase(l,i).getEtat() != 0 && getCase(l,c).getEtat() == -1){
+        //getCase(l,i-1).setEtat(0);
+        getCase(l,c).setEtat(0);
+        getCase(l,i).setEtat(0);
+        return;
+      }
+      else if(getCase(l,i).getEtat() == -1 && getCase(l,c).getEtat() != 0){
+        getCase(l,i+1).setEtat(0);
+        getCase(l,c).setEtat(0);
+        getCase(l,i).setEtat(0);
+        return;
+      }
       else if(getCase(l,i).getEtat() != getCase(l,c).getEtat() && getCase(l,i).getEtat() != 0){
         getCase(l,i-1).setEtat(getCase(l,c).getEtat());
         getCase(l,c).setEtat(0);
         return;
       }
+
 
     }
     getCase(l,largeur-1).setEtat(getCase(l,c).getEtat());
@@ -171,7 +184,7 @@ void DeuxMille48v2::moveLeft(){
 void DeuxMille48v2::moveLeft(int l, int c){
   if (canMoveLeft(l,c)) {
     for (int i = c-1; i >= 0; --i) {
-      if(getCase(l,i).getEtat() == getCase(l,c).getEtat() && getCase(l,i).canMerge()){
+      if(getCase(l,i).getEtat() == getCase(l,c).getEtat() && getCase(l,i).getEtat() != -1 && getCase(l,c).getEtat() != -1 && getCase(l,i).canMerge()){
         getCase(l,i).setEtat(getCase(l,i).getEtat()*2);
         getCase(l,c).setEtat(0);
         getCase(l,i).setCanMerge(false);
@@ -180,6 +193,18 @@ void DeuxMille48v2::moveLeft(int l, int c){
       else if (getCase(l,i).getEtat() == getCase(l,c).getEtat() && !getCase(l,i).canMerge()) {
         getCase(l,i+1).setEtat(getCase(l,c).getEtat());
         getCase(l,c).setEtat(0);
+        return;
+      }
+      else if(getCase(l,c).getEtat() != 0 && getCase(l,i).getEtat() == -1){
+        getCase(l,i+1).setEtat(0);
+        getCase(l,c).setEtat(0);
+        getCase(l,i).setEtat(0);
+        return;
+      }
+      else if(getCase(l,c).getEtat() == -1 && getCase(l,i).getEtat() != 0){
+        //getCase(l,i-1).setEtat(0);
+        getCase(l,c).setEtat(0);
+        getCase(l,i).setEtat(0);
         return;
       }
       else if(getCase(l,i).getEtat() != getCase(l,c).getEtat() && getCase(l,i).getEtat() != 0){
@@ -208,7 +233,7 @@ void DeuxMille48v2::moveDown(){
 void DeuxMille48v2::moveDown(int l, int c){
   if (canMoveDown(l,c)) {
     for (int i = l+1; i < longueur; ++i) {
-      if(getCase(i,c).getEtat() == getCase(l,c).getEtat() && getCase(i,c).canMerge()){
+      if(getCase(i,c).getEtat() == getCase(l,c).getEtat() && getCase(i,c).getEtat() != -1 && getCase(l,c).getEtat() != -1 && getCase(i,c).canMerge()){
         getCase(i,c).setEtat(getCase(i,c).getEtat()*2);
         getCase(l,c).setEtat(0);
         getCase(i,c).setCanMerge(false);
@@ -217,6 +242,18 @@ void DeuxMille48v2::moveDown(int l, int c){
       else if (getCase(i,c).getEtat() == getCase(l,c).getEtat() && !getCase(i,c).canMerge()) {
         getCase(i-1,c).setEtat(getCase(l,c).getEtat());
         getCase(l,c).setEtat(0);
+        return;
+      }
+      else if(getCase(i,c).getEtat() != 0 && getCase(l,c).getEtat() == -1){
+        //getCase(i+1,c).setEtat(0);
+        getCase(l,c).setEtat(0);
+        getCase(i,c).setEtat(0);
+        return;
+      }
+      else if(getCase(i,c).getEtat() == -1 && getCase(l,c).getEtat() != 0){
+        getCase(i-1,c).setEtat(0);
+        getCase(l,c).setEtat(0);
+        getCase(i,c).setEtat(0);
         return;
       }
       else if(getCase(i,c).getEtat() != getCase(l,c).getEtat() && getCase(i,c).getEtat() != 0){
@@ -245,7 +282,7 @@ void DeuxMille48v2::moveUp(){
 void DeuxMille48v2::moveUp(int l, int c){
   if (canMoveUp(l,c)) {
     for (int i = l-1; i >= 0; --i) {
-      if(getCase(i,c).getEtat() == getCase(l,c).getEtat() && getCase(i,c).canMerge()){
+      if(getCase(i,c).getEtat() == getCase(l,c).getEtat() && getCase(i,c).getEtat() != -1 && getCase(l,c).getEtat() != -1 && getCase(l,c).getEtat() && getCase(i,c).canMerge()){
         getCase(i,c).setEtat(getCase(i,c).getEtat()*2);
         getCase(l,c).setEtat(0);
         getCase(i,c).setCanMerge(false);
@@ -256,11 +293,25 @@ void DeuxMille48v2::moveUp(int l, int c){
         getCase(l,c).setEtat(0);
         return;
       }
+      else if(getCase(l,c).getEtat() != 0 && getCase(i,c).getEtat() == -1){
+        getCase(i+1,c).setEtat(0);
+        getCase(l,c).setEtat(0);
+        getCase(i,c).setEtat(0);
+        return;
+      }
+      else if(getCase(l,c).getEtat() == -1 && getCase(i,c).getEtat() != 0){
+        getCase(l,c).setEtat(0);
+        getCase(i,c).setEtat(0);
+        return;
+      }
+
       else if(getCase(i,c).getEtat() != getCase(l,c).getEtat() && getCase(i,c).getEtat() != 0){
         getCase(i+1,c).setEtat(getCase(l,c).getEtat());
         getCase(l,c).setEtat(0);
         return;
       }
+
+
     }
     getCase(0,c).setEtat(getCase(l,c).getEtat());
     getCase(l,c).setEtat(0);
