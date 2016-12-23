@@ -8,8 +8,7 @@ class DeuxMille48v2: public DeuxMille48v1 {
 //private:
 
 public:
-  char control;
-  DeuxMille48v2(int n, int m);
+  DeuxMille48v2(int n);
   virtual void init();
   virtual void newNumber();
   virtual bool canMoveRight(int l, int c);

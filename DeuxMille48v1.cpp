@@ -2,15 +2,9 @@
 #include "DeuxMille48v1.hpp"
 #include <ctime>
 
-DeuxMille48v1::DeuxMille48v1(int n, int m): BaseJeuAvecDeplacement<int>(n,m){
+DeuxMille48v1::DeuxMille48v1(int n): BaseJeuAvecDeplacement<int>(n,n){
   //BaseJeuAvecDeplacement<NumberOrVide>(n,m);
   srand((unsigned int) time (NULL));
-}
-
-DeuxMille48v1::~DeuxMille48v1(){}
-
-Case<int>** DeuxMille48v1::plateau(){
-  return BaseJeuAvecDeplacement<int>::plateau();
 }
 
 void DeuxMille48v1::init(){
@@ -277,28 +271,5 @@ void DeuxMille48v1::cleanMerge(){
     for (int i = 0; i < longueur; ++i) {
       getCase(i,j).setCanMerge(true);
     }
-  }
-}
-
-void DeuxMille48v1::keyPressed(){
-  cin >> control;
-}
-
-void DeuxMille48v1::deplacement(){
-  switch (control) {
-    case 'z':
-      moveUp();
-      break;
-    case 'q':
-      moveLeft();
-      break;
-    case 's':
-      moveDown();
-      break;
-    case 'd':
-      moveRight();
-      break;
-    default:
-    cout << "WRONG KEY!!! PRESS: s, q, z or d ONLY..." << endl;
   }
 }

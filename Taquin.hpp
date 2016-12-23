@@ -1,17 +1,16 @@
-#ifndef DEUXMILLE48V1
-#define DEUXMILLE48V1
+#ifndef TAQUIN
+#define TAQUIN
 
 #include "BaseJeuAvecDeplacement.hpp"
-//#include "NumberOrVide.hpp"
 
-class DeuxMille48v1: public BaseJeuAvecDeplacement<int> {
-//private:
-
+class Taquin: public BaseJeuAvecDeplacement<int> {
+private:
+  int ligne;
+  int colonne;
+  
 public:
-  DeuxMille48v1(int n);
+  Taquin(int n);
   virtual void init();
-  virtual void newNumber();
-  virtual void cleanMerge();
   virtual bool canMoveRight(int l, int c);
   virtual bool canMoveLeft(int l, int c);
   virtual bool canMoveDown(int l, int c);

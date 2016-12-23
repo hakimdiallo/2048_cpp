@@ -4,12 +4,15 @@
 #include "Plateau.hpp"
 
 template <class T> class BaseJeuAvecDeplacement: public Plateau<T> {
-//private:
+protected:
+  char control;
 
 public:
   BaseJeuAvecDeplacement(int n, int m);
   virtual ~BaseJeuAvecDeplacement();
   virtual Case<T>** plateau();
+  virtual void keyPressed();
+  virtual void deplacement();
   virtual void init() = 0;
   virtual bool canMoveRight(int l, int c) = 0;
   virtual bool canMoveLeft(int l, int c) = 0;

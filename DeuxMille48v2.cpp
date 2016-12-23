@@ -2,7 +2,7 @@
 #include "DeuxMille48v2.hpp"
 #include <ctime>
 
-DeuxMille48v2::DeuxMille48v2(int n, int m): DeuxMille48v1(n,m){}
+DeuxMille48v2::DeuxMille48v2(int n): DeuxMille48v1(n){}
 
 void DeuxMille48v2::init(){
   int l1 = rand()%longueur;
