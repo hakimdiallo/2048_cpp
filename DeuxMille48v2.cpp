@@ -66,7 +66,8 @@ bool DeuxMille48v2::canMoveRight(int l, int c){
     return false;
   }
   Case<int> ca = getCase(l,c+1);
-  if (ca.getEtat() == 0 || ca.getEtat() == getCase(l,c).getEtat()) {
+  if ((ca.getEtat() == 0 || ca.getEtat() == getCase(l,c).getEtat() || ca.getEtat() == -1 || getCase(l,c).getEtat() == -1)
+        || (((ca.getEtat() == -1 || getCase(l,c).getEtat() == -1)) && ca.getEtat() != getCase(l,c).getEtat())) {
     return true;
   }
   return false;
@@ -80,7 +81,9 @@ bool DeuxMille48v2::canMoveLeft(int l, int c){
   if (c == 0) {
     return false;
   }
-  if (getCase(l,c-1).getEtat() == 0 || getCase(l,c).getEtat() == getCase(l,c-1).getEtat()) {
+  Case<int> ca = getCase(l,c-1);
+  if ((ca.getEtat() == 0 || ca.getEtat() == getCase(l,c).getEtat() || ca.getEtat() == -1 || getCase(l,c).getEtat() == -1)
+        || (((ca.getEtat() == -1 || getCase(l,c).getEtat() == -1)) && ca.getEtat() != getCase(l,c).getEtat())) {
     return true;
   }
   return false;
@@ -94,7 +97,9 @@ bool DeuxMille48v2::canMoveDown(int l, int c){
   if (l == longueur-1) {
     return false;
   }
-  if (getCase(l+1,c).getEtat() == 0 || getCase(l,c).getEtat() == getCase(l+1,c).getEtat()) {
+  Case<int> ca = getCase(l+1,c);
+  if ((ca.getEtat() == 0 || ca.getEtat() == getCase(l,c).getEtat() || ca.getEtat() == -1 || getCase(l,c).getEtat() == -1)
+        || (((ca.getEtat() == -1 || getCase(l,c).getEtat() == -1)) && ca.getEtat() != getCase(l,c).getEtat())) {
     return true;
   }
   return false;
@@ -108,7 +113,9 @@ bool DeuxMille48v2::canMoveUp(int l, int c){
   if (l == 0) {
     return false;
   }
-  if (getCase(l-1,c).getEtat() == 0 || getCase(l,c).getEtat() == getCase(l-1,c).getEtat()) {
+  Case<int> ca = getCase(l-1,c);
+  if ((ca.getEtat() == 0 || ca.getEtat() == getCase(l,c).getEtat() || ca.getEtat() == -1 || getCase(l,c).getEtat() == -1)
+        || (((ca.getEtat() == -1 || getCase(l,c).getEtat() == -1)) && ca.getEtat() != getCase(l,c).getEtat())) {
     return true;
   }
   return false;
