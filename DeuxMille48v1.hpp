@@ -15,15 +15,11 @@ public:
   virtual ~DeuxMille48v1();
   virtual Case<int>** plateau();
   virtual void init();
-  void newNumber();
+  virtual void newNumber();
   void cleanMerge();
-  virtual bool canMoveRight();
   virtual bool canMoveRight(int l, int c);
-  virtual bool canMoveLeft();
   virtual bool canMoveLeft(int l, int c);
-  virtual bool canMoveDown();
   virtual bool canMoveDown(int l, int c);
-  virtual bool canMoveUp();
   virtual bool canMoveUp(int l, int c);
   virtual void moveRight();
   virtual void moveRight(int l, int c);

@@ -51,7 +51,7 @@ void DeuxMille48v1::newNumber(){
 bool DeuxMille48v1::isOver(){
   for (int i = 0; i < longueur; ++i) {
     for (int j = 0; j < largeur; ++j) {
-      if (getCase(i,j).getEtat() == 0) {
+      if (getCase(i,j).getEtat() == 0 || canMoveRight(i,j) || canMoveLeft(i,j) || canMoveDown(i,j) || canMoveUp(i,j)) {
         return false;
       }
     }
@@ -70,10 +70,6 @@ bool DeuxMille48v1::canMoveRight(int l, int c){
   return false;
 }
 
-bool DeuxMille48v1::canMoveRight(){
-  return false;
-}
-
 bool DeuxMille48v1::canMoveLeft(int l, int c){
   if (c == 0) {
     return false;
@@ -81,10 +77,6 @@ bool DeuxMille48v1::canMoveLeft(int l, int c){
   if (getCase(l,c-1).getEtat() == 0 || getCase(l,c).getEtat() == getCase(l,c-1).getEtat()) {
     return true;
   }
-  return false;
-}
-
-bool DeuxMille48v1::canMoveLeft(){
   return false;
 }
 
@@ -98,10 +90,6 @@ bool DeuxMille48v1::canMoveDown(int l, int c){
   return false;
 }
 
-bool DeuxMille48v1::canMoveDown(){
-  return false;
-}
-
 bool DeuxMille48v1::canMoveUp(int l, int c){
   if (l == 0) {
     return false;
@@ -112,20 +100,22 @@ bool DeuxMille48v1::canMoveUp(int l, int c){
   return false;
 }
 
-bool DeuxMille48v1::canMoveUp(){
-  return false;
-}
-
 void DeuxMille48v1::moveRight(){
+  bool move = false;
   for (int i = 0; i < longueur; ++i) {
     for (int j = largeur-1; j >= 0; --j) {
       if (getCase(i,j).getEtat() != 0) {
-        moveRight(i,j);
+        if (canMoveRight(i,j)) {
+          moveRight(i,j);
+          move = true;
+        }
       }
     }
   }
-  cleanMerge();
-  newNumber();
+  if(move){
+    cleanMerge();
+    newNumber();
+  }
 }
 
 void DeuxMille48v1::moveRight(int l, int c){
@@ -154,15 +144,21 @@ void DeuxMille48v1::moveRight(int l, int c){
 }
 
 void DeuxMille48v1::moveLeft(){
+  bool move = false;
   for (int i = 0; i < longueur; ++i) {
     for (int j = 0; j < largeur; ++j) {
       if (getCase(i,j).getEtat() != 0) {
-        moveLeft(i,j);
+        if (canMoveLeft(i,j)) {
+          moveLeft(i,j);
+          move = true;
+        }
       }
     }
   }
-  cleanMerge();
-  newNumber();
+  if(move){
+    cleanMerge();
+    newNumber();
+  }
 }
 
 void DeuxMille48v1::moveLeft(int l, int c){
@@ -191,15 +187,21 @@ void DeuxMille48v1::moveLeft(int l, int c){
 }
 
 void DeuxMille48v1::moveDown(){
+  bool move = false;
   for (int j = 0; j < largeur; ++j) {
     for (int i = longueur-1; i >= 0; --i) {
       if (getCase(i,j).getEtat() != 0) {
-        moveDown(i,j);
+        if (canMoveDown(i,j)) {
+          moveDown(i,j);
+          move = true;
+        }
       }
     }
   }
-  cleanMerge();
-  newNumber();
+  if (move) {
+    cleanMerge();
+    newNumber();
+  }
 }
 
 void DeuxMille48v1::moveDown(int l, int c){
@@ -228,15 +230,21 @@ void DeuxMille48v1::moveDown(int l, int c){
 }
 
 void DeuxMille48v1::moveUp(){
+  bool move = false;
   for (int j = 0; j < largeur; ++j) {
     for (int i = 0; i < longueur; ++i) {
       if (getCase(i,j).getEtat() != 0) {
-        moveUp(i,j);
+        if (canMoveUp(i,j)) {
+          moveUp(i,j);
+          move = true;
+        }
       }
     }
   }
-  cleanMerge();
-  newNumber();
+  if (move) {
+    cleanMerge();
+    newNumber();
+  }
 }
 
 void DeuxMille48v1::moveUp(int l, int c){

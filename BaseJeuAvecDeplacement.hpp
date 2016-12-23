@@ -11,13 +11,9 @@ public:
   virtual ~BaseJeuAvecDeplacement();
   virtual Case<T>** plateau();
   virtual void init() = 0;
-  virtual bool canMoveRight() = 0;
   virtual bool canMoveRight(int l, int c) = 0;
-  virtual bool canMoveLeft() = 0;
   virtual bool canMoveLeft(int l, int c) = 0;
-  virtual bool canMoveDown() = 0;
   virtual bool canMoveDown(int l, int c) = 0;
-  virtual bool canMoveUp() = 0;
   virtual bool canMoveUp(int l, int c) = 0;
   virtual void moveRight() = 0;
   virtual void moveRight(int l, int c) = 0;

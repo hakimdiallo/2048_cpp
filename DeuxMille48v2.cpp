@@ -2,16 +2,7 @@
 #include "DeuxMille48v2.hpp"
 #include <ctime>
 
-DeuxMille48v2::DeuxMille48v2(int n, int m): DeuxMille48v1(n,m){
-  //BaseJeuAvecDeplacement<NumberOrVide>(n,m);
-  srand((unsigned int) time (NULL));
-}
-
-DeuxMille48v2::~DeuxMille48v2(){}
-
-Case<int>** DeuxMille48v2::plateau(){
-  return DeuxMille48v2::plateau();
-}
+DeuxMille48v2::DeuxMille48v2(int n, int m): DeuxMille48v1(n,m){}
 
 void DeuxMille48v2::init(){
   int l1 = rand()%longueur;
@@ -46,19 +37,8 @@ void DeuxMille48v2::newNumber(){
     }
   else if(r==3 || r==4){
     getCase(l,c).setEtat(-1);
-        }
-        else getCase(l,c).setEtat(4);
-}
-
-bool DeuxMille48v2::isOver(){
-  for (int i = 0; i < longueur; ++i) {
-    for (int j = 0; j < largeur; ++j) {
-      if (getCase(i,j).getEtat() == 0) {
-        return false;
-      }
-    }
   }
-  return true;
+  else getCase(l,c).setEtat(4);
 }
 
 bool DeuxMille48v2::canMoveRight(int l, int c){
@@ -70,10 +50,6 @@ bool DeuxMille48v2::canMoveRight(int l, int c){
         || (((ca.getEtat() == -1 || getCase(l,c).getEtat() == -1)) && ca.getEtat() != getCase(l,c).getEtat())) {
     return true;
   }
-  return false;
-}
-
-bool DeuxMille48v2::canMoveRight(){
   return false;
 }
 
@@ -89,10 +65,6 @@ bool DeuxMille48v2::canMoveLeft(int l, int c){
   return false;
 }
 
-bool DeuxMille48v2::canMoveLeft(){
-  return false;
-}
-
 bool DeuxMille48v2::canMoveDown(int l, int c){
   if (l == longueur-1) {
     return false;
@@ -102,10 +74,6 @@ bool DeuxMille48v2::canMoveDown(int l, int c){
         || (((ca.getEtat() == -1 || getCase(l,c).getEtat() == -1)) && ca.getEtat() != getCase(l,c).getEtat())) {
     return true;
   }
-  return false;
-}
-
-bool DeuxMille48v2::canMoveDown(){
   return false;
 }
 
@@ -119,22 +87,6 @@ bool DeuxMille48v2::canMoveUp(int l, int c){
     return true;
   }
   return false;
-}
-
-bool DeuxMille48v2::canMoveUp(){
-  return false;
-}
-
-void DeuxMille48v2::moveRight(){
-  for (int i = 0; i < longueur; ++i) {
-    for (int j = largeur-1; j >= 0; --j) {
-      if (getCase(i,j).getEtat() != 0) {
-        moveRight(i,j);
-      }
-    }
-  }
-  cleanMerge();
-  newNumber();
 }
 
 void DeuxMille48v2::moveRight(int l, int c){
@@ -176,18 +128,6 @@ void DeuxMille48v2::moveRight(int l, int c){
   }
 }
 
-void DeuxMille48v2::moveLeft(){
-  for (int i = 0; i < longueur; ++i) {
-    for (int j = 0; j < largeur; ++j) {
-      if (getCase(i,j).getEtat() != 0) {
-        moveLeft(i,j);
-      }
-    }
-  }
-  cleanMerge();
-  newNumber();
-}
-
 void DeuxMille48v2::moveLeft(int l, int c){
   if (canMoveLeft(l,c)) {
     for (int i = c-1; i >= 0; --i) {
@@ -223,18 +163,6 @@ void DeuxMille48v2::moveLeft(int l, int c){
     getCase(l,0).setEtat(getCase(l,c).getEtat());
     getCase(l,c).setEtat(0);
   }
-}
-
-void DeuxMille48v2::moveDown(){
-  for (int j = 0; j < largeur; ++j) {
-    for (int i = longueur-1; i >= 0; --i) {
-      if (getCase(i,j).getEtat() != 0) {
-        moveDown(i,j);
-      }
-    }
-  }
-  cleanMerge();
-  newNumber();
 }
 
 void DeuxMille48v2::moveDown(int l, int c){
@@ -274,18 +202,6 @@ void DeuxMille48v2::moveDown(int l, int c){
   }
 }
 
-void DeuxMille48v2::moveUp(){
-  for (int j = 0; j < largeur; ++j) {
-    for (int i = 0; i < longueur; ++i) {
-      if (getCase(i,j).getEtat() != 0) {
-        moveUp(i,j);
-      }
-    }
-  }
-  cleanMerge();
-  newNumber();
-}
-
 void DeuxMille48v2::moveUp(int l, int c){
   if (canMoveUp(l,c)) {
     for (int i = l-1; i >= 0; --i) {
@@ -322,36 +238,5 @@ void DeuxMille48v2::moveUp(int l, int c){
     }
     getCase(0,c).setEtat(getCase(l,c).getEtat());
     getCase(l,c).setEtat(0);
-  }
-}
-
-void DeuxMille48v2::cleanMerge(){
-  for (int j = 0; j < largeur; ++j) {
-    for (int i = 0; i < longueur; ++i) {
-      getCase(i,j).setCanMerge(true);
-    }
-  }
-}
-
-void DeuxMille48v2::keyPressed(){
-  cin >> control;
-}
-
-void DeuxMille48v2::deplacement(){
-  switch (control) {
-    case 'z':
-      moveUp();
-      break;
-    case 'q':
-      moveLeft();
-      break;
-    case 's':
-      moveDown();
-      break;
-    case 'd':
-      moveRight();
-      break;
-    default:
-    cout << "WRONG KEY!!! PRESS: s, q, z or d ONLY..." << endl;
   }
 }
