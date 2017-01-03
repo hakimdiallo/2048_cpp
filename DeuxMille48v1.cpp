@@ -273,3 +273,27 @@ void DeuxMille48v1::cleanMerge(){
     }
   }
 }
+
+void DeuxMille48v1::print(ostream& out) const {
+  for (int i = 0; i < longueur; ++i) {
+    for (int j = 0; j < largeur; ++j) {
+      if (getCase(i,j).getEtat() == 0) {
+        out << "|    ";
+      }
+      else if (getCase(i,j).getEtat() >= 10) {
+        out << "| " << getCase(i,j) << " ";
+      }
+      else if (getCase(i,j).getEtat() == -1) {
+        out << "| D  ";
+      }
+      else if (getCase(i,j).getEtat() == -2){
+        out << "| x2 ";
+      }
+      else {
+        out << "| " << getCase(i,j) << "  ";
+      }
+    }
+    out << "|" << endl;
+  }
+  //return out;
+}

@@ -7,7 +7,7 @@ class Taquin: public BaseJeuAvecDeplacement<int> {
 private:
   int ligne;
   int colonne;
-  
+
 public:
   Taquin(int n);
   virtual void init();
@@ -24,6 +24,7 @@ public:
   virtual void moveUp();
   virtual void moveUp(int l, int c);
   virtual bool isOver();
+  virtual void print(ostream& os) const;
 };
 
 #endif

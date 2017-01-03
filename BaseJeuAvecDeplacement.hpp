@@ -27,6 +27,7 @@ public:
   virtual void moveUp() = 0;
   virtual void moveUp(int l, int c) = 0;
   virtual bool isOver() = 0;
+  //friend ostream& operator<<(ostream& os) const = 0;
 };
 
 #endif

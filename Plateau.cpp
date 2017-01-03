@@ -15,7 +15,7 @@ template <class T> Plateau<T>::~Plateau(){
   delete [] plateau;
 }
 
-template <class T> int Plateau<T>::getLongueur(){
+template <class T> int Plateau<T>::getLongueur() const{
   return longueur;
 }
 
@@ -23,7 +23,7 @@ template <class T> void Plateau<T>::setLongueur(int l){
   longueur = l;
 }
 
-template <class T> int Plateau<T>::getLargeur(){
+template <class T> int Plateau<T>::getLargeur() const{
   return largeur;
 }
 
@@ -31,16 +31,17 @@ template <class T> void Plateau<T>::setLargeur(int l){
   largeur = l;
 }
 
-template <class T> Case<T>& Plateau<T>::getCase(int l, int c){
+template <class T> Case<T>& Plateau<T>::getCase(int l, int c) const{
   return plateau[l][c];
 }
 
 template <class T> ostream& operator<<(ostream& out, Plateau<T>& p){
-  for (int i = 0; i < p.getLongueur(); ++i) {
+  /*for (int i = 0; i < p.getLongueur(); ++i) {
     for (int j = 0; j < p.getLargeur(); ++j) {
       out << "| " << p.plateau[i][j] << " ";
     }
     out << "|" << endl;
-  }
+  }*/
+  p.print(out);
   return out;
 }

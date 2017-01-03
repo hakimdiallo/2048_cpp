@@ -18,26 +18,30 @@ void menu_choix_jeu(){
   cout << "Tapez 1 pour 2048 classique" << endl;
   cout << "Tapez 2 pour 2048 v2" << endl;
   cout << "Tapez 3 pour Taquin" << endl;
+  cout << "Tapez 4 pour Quitter le menu" << endl;
   cin >> a;
     int c;
   if(a == 1){
-      cout << "Entrez la taille du plateau: " << endl;
-      cin >> c;
-      DeuxMille48v1 v1(c);
-      play(v1);
-    }
-    else if(a == 2){
-      cout << "Entrez la taille du plateau: " << endl;
-      cin >> c;
-      DeuxMille48v2 v2(c);
-      play(v2);
-    }
-      else if (a == 3){
-      cout << "Entrez la taille du plateau: " << endl;
-      cin >> c;
-      Taquin v3(c);
-      play(v3);
-    }
+    cout << "Entrez la taille du plateau: " << endl;
+    cin >> c;
+    DeuxMille48v1 v1(c);
+    play(v1);
+  }
+  else if(a == 2){
+    cout << "Entrez la taille du plateau: " << endl;
+    cin >> c;
+    DeuxMille48v2 v2(c);
+    play(v2);
+  }
+  else if (a == 3){
+    cout << "Entrez la taille du plateau: " << endl;
+    cin >> c;
+    Taquin v3(c);
+    play(v3);
+  }else{
+    cout << "Bye...! " << endl;
+    exit(0);
+  }
 
 }
 

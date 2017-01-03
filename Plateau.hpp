@@ -16,11 +16,12 @@ public:
   //static Plateau<T> *getInstance();
   //virtual void create(int n, int m);
   virtual ~Plateau();
-  virtual int getLongueur();
-  virtual int getLargeur();
+  virtual int getLongueur() const;
+  virtual int getLargeur() const;
   virtual void setLongueur(int n);
   virtual void setLargeur(int m);
-  Case<T>& getCase(int l, int c);
+  Case<T>& getCase(int l, int c) const;
+  virtual void print(ostream& os) const = 0;
 };
 
 template <class T> ostream& operator<<(ostream& out, const Plateau<T>& p);

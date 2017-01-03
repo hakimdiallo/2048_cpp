@@ -117,3 +117,21 @@ bool Taquin::isOver(){
   }
   return is_sorted(&tab[0],&tab[count-2]);
 }
+
+void Taquin::print(ostream& out) const{
+  for (int i = 0; i < longueur; ++i) {
+    for (int j = 0; j < largeur; ++j) {
+      if (getCase(i,j).getEtat() == 0) {
+        out << "|    ";
+      }
+      else if (getCase(i,j).getEtat() >= 10) {
+        out << "| " << getCase(i,j) << " ";
+      }
+      else {
+        out << "| " << getCase(i,j) << "  ";
+      }
+    }
+    out << "|" << endl;
+  }
+  //return out;
+}
