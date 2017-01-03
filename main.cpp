@@ -1,14 +1,38 @@
 #include "Plateau.cpp"
 #include "DeuxMille48v2.hpp"
 #include "Taquin.hpp"
+#include "StupidRobot.hpp"
 
-void play(BaseJeuAvecDeplacement<int>& jeu){
+void menu_choix_jeu();
+
+void play_manual(BaseJeuAvecDeplacement<int>& jeu){
   cout << "Initialisation..." << endl;
   jeu.init();
   while (!jeu.isOver()) {
     cout << jeu << endl;
     jeu.keyPressed();
     jeu.deplacement();
+  }
+}
+
+void play_robot(BaseJeuAvecDeplacement<int>& jeu) {
+  StupidRobot sr(jeu);
+  sr.run();
+}
+
+void play(BaseJeuAvecDeplacement<int>& jeu) {
+  int a;
+  cout << "Comment?" << endl;
+  cout << "Tapez 1 pour jouer manuellement" << endl;
+  cout << "Tapez 2 pour lancer le robot" << endl;
+  cout << "Tapez 3 pour retourner au choix du jeu" << endl;
+  cin >> a;
+  if (a == 1) {
+    play_manual(jeu);
+  }else if (a == 2) {
+    play_robot(jeu);
+  }else if (a == 3) {
+    menu_choix_jeu();
   }
 }
 
